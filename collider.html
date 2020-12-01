@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>intro</title>
+    
+	</head>
+	<body>
+    
+   <script type="module">
+
+      import * as THREE from './js/build/three.module.js'
+      import { OrbitControls } from './js/examples/jsm/controls/OrbitControls.js' 
+     
+      const scene = new THREE.Scene();
+
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+
+      camera.position.z = 10;
+      //camera.rotation.y = 1.6;
+
+      const renderer = new THREE.WebGLRenderer();
+    
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+
+        let Tgeometry = new THREE.TorusGeometry(10, 3, 16, 100)
+        let Tmaterial = new THREE.PointsMaterial({ color: 0xB0FFFF, size: 0.1 })
+        let Tmesh = new THREE.Points(Tgeometry, Tmaterial)
+
+        let Tgeometry2 = new THREE.SphereGeometry(2, 1, 16, 100)
+        //let material2 = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+        let material2 = new THREE.PointsMaterial({ color: 0xD020FF, size: 0.25 });
+        let Tgeom = new THREE.Points(Tgeometry2, material2);
+
+        let Tgeometry3 = new THREE.SphereGeometry(16, 1, 16, 100)
+        let material3 = new THREE.MeshBasicMaterial({ color: 0xFF00B0 });
+        let Tgeom2 = new THREE.Mesh(Tgeometry3, material3);
+
+        let Tgeometry4 = new THREE.SphereGeometry(1, 10,)
+        let material4 = new THREE.MeshBasicMaterial({ color: 0x11114D });
+        let Tgeom3 = new THREE.Mesh(Tgeometry4, material4);
+
+        let Tgeometry5 = new THREE.SphereGeometry(1.2, 1,)
+        let material5 = new THREE.MeshBasicMaterial({ color: 0xFFFFFF });
+        let Tgeom4 = new THREE.Mesh(Tgeometry5, material5);
+      
+
+      //material2.wireframe = true;
+      material3.wireframe = true;
+
+
+      scene.add( Tmesh );
+      scene.add( Tgeom );
+      scene.add( Tgeom2 );
+      scene.add( Tgeom3 );
+      scene.add( Tgeom4 );
+      Tmesh.rotation.x = 1.62;
+      Tgeom.rotation.x = 1.62;
+      Tgeom3.rotation.x = 1.62;
+      Tgeom4.rotation.x = 1.62
+      //Tgeom4.rotation.z = 1
+      //Tgeom.rotation.x = 1.62;
+
+
+      function animate() {
+
+				requestAnimationFrame( animate ); 
+
+
+        Tmesh.rotation.x += 0.001;
+        Tmesh.rotation.y -= 0.005;
+        Tmesh.rotation.z += 0.01;
+
+        Tgeom.rotation.x += 0.1;
+        Tgeom.rotation.y -= 0.005;
+        Tgeom.rotation.z += 0.1;
+        
+        Tgeom2.rotation.y -= 0.005;
+        Tgeom2.rotation.z += 0.01;
+
+        Tgeom4.rotation.x += 0.1;
+        Tgeom4.rotation.y -= 0.005;
+        Tgeom4.rotation.z += 0.1;
+        //camera.rotation.y -= 0.01;
+
+				renderer.render( scene, camera );
+			}
+
+      
+      animate();
+
+      
+      
+      
+		</script>
+	</body>
+</html>
